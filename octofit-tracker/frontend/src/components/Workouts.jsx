@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
 import { getApiBaseUrl, getCollection } from '../config/api.js'
 
+const workoutsEndpoint = getApiBaseUrl('workouts')
+
 export default function Workouts() {
   const [workouts, setWorkouts] = useState([])
   const [error, setError] = useState('')
@@ -8,7 +10,7 @@ export default function Workouts() {
   useEffect(() => {
     const loadData = async () => {
       try {
-        const response = await fetch(getApiBaseUrl('/workouts'))
+        const response = await fetch(workoutsEndpoint)
         if (!response.ok) {
           throw new Error('Failed to fetch workouts data')
         }

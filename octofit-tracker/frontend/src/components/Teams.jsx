@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
 import { getApiBaseUrl, getCollection } from '../config/api.js'
 
+const teamsEndpoint = getApiBaseUrl('teams')
+
 export default function Teams() {
   const [teams, setTeams] = useState([])
   const [error, setError] = useState('')
@@ -8,7 +10,7 @@ export default function Teams() {
   useEffect(() => {
     const loadData = async () => {
       try {
-        const response = await fetch(getApiBaseUrl('/teams'))
+        const response = await fetch(teamsEndpoint)
         if (!response.ok) {
           throw new Error('Failed to fetch teams data')
         }

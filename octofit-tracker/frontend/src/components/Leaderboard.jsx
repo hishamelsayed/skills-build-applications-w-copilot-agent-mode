@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
 import { getApiBaseUrl, getCollection } from '../config/api.js'
 
+const leaderboardEndpoint = getApiBaseUrl('leaderboard')
+
 export default function Leaderboard() {
   const [leaderboard, setLeaderboard] = useState([])
   const [error, setError] = useState('')
@@ -8,7 +10,7 @@ export default function Leaderboard() {
   useEffect(() => {
     const loadData = async () => {
       try {
-        const response = await fetch(getApiBaseUrl('/leaderboard'))
+        const response = await fetch(leaderboardEndpoint)
         if (!response.ok) {
           throw new Error('Failed to fetch leaderboard data')
         }

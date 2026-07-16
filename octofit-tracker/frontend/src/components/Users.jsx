@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
 import { getApiBaseUrl, getCollection } from '../config/api.js'
 
+const usersEndpoint = getApiBaseUrl('users')
+
 export default function Users() {
   const [users, setUsers] = useState([])
   const [error, setError] = useState('')
@@ -8,7 +10,7 @@ export default function Users() {
   useEffect(() => {
     const loadData = async () => {
       try {
-        const response = await fetch(getApiBaseUrl('/users'))
+        const response = await fetch(usersEndpoint)
         if (!response.ok) {
           throw new Error('Failed to fetch users data')
         }

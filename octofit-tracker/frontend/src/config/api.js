@@ -1,13 +1,14 @@
 const codespaceName = import.meta.env.VITE_CODESPACE_NAME?.trim()
 
-export const getApiBaseUrl = (path = '') => {
-  const cleanPath = path.startsWith('/') ? path : `/${path}`
+export const getApiBaseUrl = (component = '') => {
+  const cleanComponent = component.startsWith('/') ? component.slice(1) : component
+  const endpoint = cleanComponent ? `/api/${cleanComponent}` : '/api'
 
   if (codespaceName) {
-    return `https://${codespaceName}-8000.app.github.dev/api${cleanPath}`
+    return `https://${codespaceName}-8000.app.github.dev${endpoint}`
   }
 
-  return `/api${cleanPath}`
+  return endpoint
 }
 
 export const getCollection = (payload, collectionKey) => {

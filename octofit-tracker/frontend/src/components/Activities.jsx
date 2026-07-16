@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
 import { getApiBaseUrl, getCollection } from '../config/api.js'
 
+const activitiesEndpoint = getApiBaseUrl('activities')
+
 export default function Activities() {
   const [activities, setActivities] = useState([])
   const [error, setError] = useState('')
@@ -8,7 +10,7 @@ export default function Activities() {
   useEffect(() => {
     const loadData = async () => {
       try {
-        const response = await fetch(getApiBaseUrl('/activities'))
+        const response = await fetch(activitiesEndpoint)
         if (!response.ok) {
           throw new Error('Failed to fetch activities data')
         }
