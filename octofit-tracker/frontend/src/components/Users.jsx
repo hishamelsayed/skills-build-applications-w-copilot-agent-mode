@@ -1,7 +1,10 @@
 import { useEffect, useState } from 'react'
-import { getApiBaseUrl, getCollection } from '../config/api.js'
+import { getCollection } from '../config/api.js'
 
-const usersEndpoint = getApiBaseUrl('users')
+const codespaceName = import.meta.env.VITE_CODESPACE_NAME?.trim()
+const usersEndpoint = codespaceName
+  ? `https://${codespaceName}-8000.app.github.dev/api/users/`
+  : '/api/users/'
 
 export default function Users() {
   const [users, setUsers] = useState([])

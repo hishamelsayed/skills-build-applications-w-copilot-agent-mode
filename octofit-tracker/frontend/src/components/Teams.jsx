@@ -1,7 +1,10 @@
 import { useEffect, useState } from 'react'
-import { getApiBaseUrl, getCollection } from '../config/api.js'
+import { getCollection } from '../config/api.js'
 
-const teamsEndpoint = getApiBaseUrl('teams')
+const codespaceName = import.meta.env.VITE_CODESPACE_NAME?.trim()
+const teamsEndpoint = codespaceName
+  ? `https://${codespaceName}-8000.app.github.dev/api/teams/`
+  : '/api/teams/'
 
 export default function Teams() {
   const [teams, setTeams] = useState([])

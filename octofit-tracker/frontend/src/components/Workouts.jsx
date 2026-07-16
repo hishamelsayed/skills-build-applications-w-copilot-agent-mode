@@ -1,7 +1,10 @@
 import { useEffect, useState } from 'react'
-import { getApiBaseUrl, getCollection } from '../config/api.js'
+import { getCollection } from '../config/api.js'
 
-const workoutsEndpoint = getApiBaseUrl('workouts')
+const codespaceName = import.meta.env.VITE_CODESPACE_NAME?.trim()
+const workoutsEndpoint = codespaceName
+  ? `https://${codespaceName}-8000.app.github.dev/api/workouts/`
+  : '/api/workouts/'
 
 export default function Workouts() {
   const [workouts, setWorkouts] = useState([])
