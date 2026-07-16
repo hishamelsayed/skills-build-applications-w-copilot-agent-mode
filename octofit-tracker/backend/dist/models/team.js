@@ -1,0 +1,7 @@
+import { Schema, model } from 'mongoose';
+const teamSchema = new Schema({
+    name: { type: String, required: true, unique: true },
+    description: { type: String, default: '' },
+    members: { type: [String], default: [] },
+}, { timestamps: true });
+export const Team = model('Team', teamSchema);
